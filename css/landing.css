@@ -115,3 +115,7 @@ body { overflow-x: clip; }
 .ft .btn--slim { min-height: 2.1rem; padding: 0.21rem 1.26rem 0.28rem; font-size: 1.015rem; box-shadow: 0 3px 0 var(--btn-edge), 0 3px 0 1px var(--edge); }
 .ft-legal { font-size: var(--fs-small); color: var(--fg-muted); }
 @media (max-width: 52rem) { .ft-cols { grid-template-columns: 1fr 1fr; } }
+
+/* ---- «Spill nå» that sticks to the top of the screen (8 px from the edge) once the one in the hero has scrolled away ---- */
+.sticky-cta { position: fixed; z-index: 60; top: calc(8px + env(safe-area-inset-top, 0px)); left: 50%; translate: -50% -220%; opacity: 0; pointer-events: none; transition: translate 0.45s var(--ease), opacity 0.3s; }
+.sticky-cta.show { translate: -50% 0; opacity: 1; pointer-events: auto; }

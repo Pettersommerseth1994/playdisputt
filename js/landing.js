@@ -19,3 +19,7 @@ const heroH1 = document.querySelector('.hero h1.ta');
 if (heroH1) requestAnimationFrame(() => heroH1.classList.add('go'));
 const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add(e.target.classList.contains('ta') ? 'go' : 'in'); io.unobserve(e.target); } }), { threshold: 0.2, rootMargin: '0px 0px -6% 0px' });
 document.querySelectorAll('.rv, .ta:not(.go)').forEach((el) => io.observe(el));
+
+// The «Spill nå» that sticks to the top of the screen: shown when the one in the hero has scrolled out of view above.
+const heroBtn = document.querySelector('.hero .cta .btn'), stickyBtn = document.querySelector('.sticky-cta');
+if (heroBtn && stickyBtn) new IntersectionObserver(([e]) => stickyBtn.classList.toggle('show', !e.isIntersecting && e.boundingClientRect.top < 0)).observe(heroBtn);
