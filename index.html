@@ -184,26 +184,35 @@ a.lchip[aria-current] { box-shadow: 0 0 0 2px var(--yellow), var(--shadow-1); }
 .scr { display: inline-block; padding-bottom: 0.28em; background: url('/assets/art/scribble-underline.svg') left bottom / 100% 0.42em no-repeat; }
 @media (max-width: 52rem) { .badge5 { right: calc(50% - 12.5rem); } .sticker .sa1 { display: none; } }
 
-.mv3 { display: grid; gap: var(--s-6); justify-items: center; }
-.mv3-picks { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(0.8rem, 3vw, 2.4rem); width: min(100%, 62rem); margin: 0; padding: 0; border: 0; }
-.mv3-pick { position: relative; display: grid; justify-items: center; gap: var(--s-3); cursor: pointer; user-select: none; -webkit-user-select: none; }
-.mv3-pick:nth-child(odd) { transform: translateY(1rem); }
-.mv3-pick input { position: absolute; opacity: 0; pointer-events: none; }
-.mv3-pick .blob { width: 100%; aspect-ratio: 1 / 1.05; transition: transform 0.45s var(--ease), box-shadow 0.3s; }
-.mv3-pick:hover .blob { transform: scale(1.05) rotate(-2deg); }
-.mv3-pick:has(input:checked) .blob { transform: scale(1.06) rotate(1.5deg); box-shadow: 0 0 0 0.45rem var(--yellow), var(--shadow-3); }
-.mv3-pick:has(input:focus-visible) .blob { outline: 3px solid var(--yellow); outline-offset: 6px; }
-.mv3-pick .cap { font-family: var(--font-display); font-weight: 900; font-size: clamp(1.1rem, 2.2vw, 1.5rem); line-height: 1.1; }
-.mv3-pick:has(input:checked) .cap { color: var(--yellow); }
-.mv3-res { position: relative; margin-top: 20px; display: grid; grid-template-columns: 7rem 1fr; gap: var(--s-5); align-items: center; width: min(100%, 44rem); padding: var(--s-5) var(--s-6); transition: opacity 0.25s, transform 0.25s; }
-.mv3-res.sw { opacity: 0; transform: translateY(10px); }
-.mv3-res img { width: 100%; height: auto; }
-.mv3-res .vt { font-size: 0.92rem; font-weight: 800; color: var(--orange-deep); }
-.mv3-res h3 { font-size: clamp(1.7rem, 3vw, 2.4rem); line-height: 1.02; }
-.mv3-res p { color: rgb(var(--ink-rgb) / 0.82); }
-.mv3-res::before { content: ''; position: absolute; top: calc(-1.4rem + 1px); left: var(--pick, 50%); width: 2.2rem; height: 1.4rem; translate: -50% 0; rotate: var(--tilt, 0deg); transform-origin: 50% 100%; background: var(--cream); clip-path: polygon(50% 0, 100% 100%, 0 100%); transition: left 0.5s var(--ease), rotate 0.5s var(--ease); }
-.mv3-q { font-family: var(--font-display); font-weight: 900; font-size: clamp(1.3rem, 2.4vw, 1.8rem); text-align: center; }
-@media (max-width: 52rem) { .mv3-picks { grid-template-columns: 1fr 1fr; width: min(100%, 22rem); } .mv3-pick:nth-child(odd) { transform: none; } .mv3-pick:nth-child(even) { transform: translateY(0.8rem); } .mv3-res { grid-template-columns: 1fr; text-align: center; justify-items: center; padding: var(--s-5); } .mv3-res img { width: 6rem; } .mv3-res::before { display: none; } }
+.p4 { display: flex; gap: 0.75rem; height: 28rem; width: min(100%, 62rem); margin-inline: auto; }
+.p4-p { position: relative; flex: 1 1 0; min-width: 0; padding: 0; overflow: hidden; cursor: pointer; text-align: left; font: inherit; color: var(--cream); background: var(--burgundy-900); border: 0.4rem solid var(--cream); border-radius: 2.2rem 3rem 2.4rem 2.8rem / 2.8rem 2.2rem 3rem 2.4rem; box-shadow: var(--shadow-2); transition: flex-grow 0.65s var(--ease-out); -webkit-tap-highlight-color: transparent; }
+.p4-p:nth-child(even) { border-radius: 3rem 2.2rem 2.8rem 2.4rem / 2.2rem 3rem 2.4rem 2.8rem; }
+.p4-p > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: scale 0.8s var(--ease-out), filter 0.4s; filter: brightness(0.7) saturate(0.85); }
+.p4-p::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgb(var(--shadow-rgb) / 0.75), transparent 55%); pointer-events: none; }
+.p4-p .cap { position: absolute; z-index: 2; right: 1rem; bottom: 1.2rem; font-family: var(--font-display); font-weight: 900; font-size: 1.45rem; line-height: 1; writing-mode: vertical-rl; rotate: 180deg; white-space: nowrap; transition: opacity 0.3s; }
+.p4-p .cap2 { position: absolute; z-index: 2; top: 1rem; left: 1.1rem; padding: 0.35rem 1rem; border-radius: var(--r-pill); font-family: var(--font-display); font-weight: 900; font-size: 1.15rem; line-height: 1.1; color: var(--cream); background: rgb(var(--shadow-rgb) / 0.6); opacity: 0; transition: opacity 0.3s; }
+.p4-p:hover > img { filter: brightness(0.85) saturate(1); }
+.p4-p[aria-expanded='true'] { flex-grow: 4.4; }
+.p4-p[aria-expanded='true'] > img { filter: none; scale: 1.03; }
+.p4-p[aria-expanded='true'] .cap { opacity: 0; }
+.p4-p[aria-expanded='true'] .cap2 { opacity: 1; transition-delay: 0.3s; }
+.p4-p:focus-visible { outline: 3px solid var(--yellow); outline-offset: 4px; }
+.p4-t { position: absolute; z-index: 3; left: 0.9rem; right: 0.9rem; bottom: 0.9rem; display: grid; grid-template-columns: 4.6rem 1fr; gap: 1rem; align-items: center; padding: 1.1rem 1.3rem; color: var(--ink); background: var(--tex-grain), var(--cream); border-radius: var(--r-card); opacity: 0; translate: 0 14px; pointer-events: none; transition: opacity 0.3s, translate 0.4s var(--ease-out); }
+.p4-p[aria-expanded='true'] .p4-t { opacity: 1; translate: 0 0; transition-delay: 0.3s; }
+.p4-t img { width: 100%; height: auto; }
+.p4-t .k { display: block; font-size: 0.85rem; font-weight: 800; color: var(--orange-deep); }
+.p4-t b { display: block; font-family: var(--font-display); font-weight: 900; font-size: 1.5rem; line-height: 1.05; margin: 0.05rem 0 0.2rem; }
+.p4-t .p { display: block; font-size: 0.93rem; color: rgb(var(--ink-rgb) / 0.85); }
+@media (max-width: 44rem) {
+  .p4 { flex-direction: column; height: auto; gap: 0.6rem; }
+  .p4-p { flex: none; height: 5.2rem; transition: height 0.6s var(--ease-out); }
+  .p4-p[aria-expanded='true'] { height: 23rem; }
+  .p4-p .cap { writing-mode: horizontal-tb; rotate: 0deg; left: 1.1rem; right: auto; bottom: 1.5rem; font-size: 1.35rem; }
+  .p4-p .cap2 { font-size: 1.05rem; top: 0.8rem; left: 0.9rem; }
+  .p4-t { grid-template-columns: 3.6rem 1fr; padding: 0.9rem 1rem; gap: 0.8rem; }
+  .p4-t b { font-size: 1.3rem; }
+}
+@media (prefers-reduced-motion: reduce) { .p4-p, .p4-p > img, .p4-t, .p4-p .cap2 { transition: none; } }
 
 .cards2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-5); } @media (max-width: 52rem) { .cards2 { grid-template-columns: 1fr; } }
 </style>
@@ -234,7 +243,7 @@ a.lchip[aria-current] { box-shadow: 0 0 0 2px var(--yellow), var(--shadow-1); }
 
 <section id="slik" class="sec"><div class="wrap mid"><div class="slik-head"><h2 class="h2">Slik spiller dere</h2><p class="lead rv">Én av dere er imposteren og vet svaret. Resten må bli enige om riktig svar, uten å la seg lure.</p></div><ol class="steps4"><li class="rv" style="--d:0.0s"><span class="n">Steg 1</span><div><h3>Alle får en rolle</h3><p>De fleste er lojale, men én er imposter. Er dere seks eller flere, er det to impostere.</p></div></li><li class="rv" style="--d:0.08s"><span class="n">Steg 2</span><div><h3>Diskuter!</h3><p>Gruppen får et spørsmål, og én av dere leser det høyt. Bare imposteren vet svaret, og prøver å lure dere til å svare feil.</p></div></li><li class="rv" style="--d:0.16s"><span class="n">Steg 3</span><div><h3>Lås svaret</h3><p>Bli enige og lås svaret. Dere må selv finne ut hvordan dere skal bli enige. Så telles det ned fra 5.</p></div></li><li class="rv" style="--d:0.24s"><span class="n">Steg 4</span><div><h3>Imposteren avslører seg</h3><p>Imposteren sier riktig svar høyt. Rett svar gir de lojale poeng, feil svar gir imposteren poeng.</p></div></li></ol><div class="spot below rv"><div class="story-col"><div id="rules" aria-label="Slik spiller dere" translate="no"></div><p class="story-hint"><span>Trykk for å gå videre.</span> <span>Hold for å pause.</span></p></div></div></div></section>
 
-<section id="maater" class="sec"><div class="wrap"><div class="sec-head center"><h2 class="h2">Spill hvor som helst</h2><p class="lead rv">Velg hvor dere er, så viser vi hvordan dere spiller best.</p></div><div class="mv3" translate="no"><p class="mv3-q rv">Hvor skal dere spille?</p><fieldset class="mv3-picks rv"><legend class="sr-only">Velg hvor dere spiller</legend><label class="mv3-pick"><input type="radio" name="mv3" value="car" checked><figure class="blob "><img src="/img/camping.jpg" alt="" style="object-position:50% 52%"></figure><span class="cap">På campingen</span></label><label class="mv3-pick"><input type="radio" name="mv3" value="cabin"><figure class="blob blob--b"><img src="/img/hytta.jpg" alt="" style="object-position:52% 62%"></figure><span class="cap">På hytta</span></label><label class="mv3-pick"><input type="radio" name="mv3" value="cabin"><figure class="blob blob--c"><img src="/img/vors.jpg" alt="" style="object-position:38% 40%"></figure><span class="cap">På vors</span></label><label class="mv3-pick"><input type="radio" name="mv3" value="car"><figure class="blob blob--d"><img src="/img/stue.jpg" alt="" style="object-position:55% 52%"></figure><span class="cap">I stua</span></label></fieldset><div class="mv3-res card card--paper rv" id="mv3r"><img id="mv3a" src="/assets/art/bil.svg" alt=""><div><span class="vt" id="mv3vt">Bilturmodus</span><h3 id="mv3h">På én telefon</h3><p id="mv3p">Telefonen sendes rundt. Perfekt for bilturen, ferga og venterommet.</p></div></div></div></div></section>
+<section id="maater" class="sec"><div class="wrap"><div class="sec-head center"><h2 class="h2">Spill hvor som helst</h2><p class="lead rv">Velg hvor dere er, så viser vi hvordan dere spiller best.</p></div><div class="p4 rv" translate="no"><button class="p4-p" type="button" aria-expanded="true"><img src="/img/camping.jpg" alt="" style="object-position:50% 52%"><span class="cap">På campingen</span><span class="cap2" aria-hidden="true">På campingen</span><span class="p4-t"><img src="/assets/art/bil.svg" alt=""><span><span class="k">Bilturmodus</span><b>På én telefon</b><span class="p">Telefonen sendes rundt. Perfekt for bilturen, ferga og venterommet.</span></span></span></button><button class="p4-p" type="button" aria-expanded="false"><img src="/img/hytta.jpg" alt="" style="object-position:52% 62%"><span class="cap">På hytta</span><span class="cap2" aria-hidden="true">På hytta</span><span class="p4-t"><img src="/assets/art/hytte.svg" alt=""><span><span class="k">Hytteturmodus</span><b>På hver sin telefon</b><span class="p">Alle blir med fra sin egen telefon, med en kode eller QR-kode. Perfekt for hytta og vorspielet.</span></span></span></button><button class="p4-p" type="button" aria-expanded="false"><img src="/img/vors.jpg" alt="" style="object-position:38% 40%"><span class="cap">På vors</span><span class="cap2" aria-hidden="true">På vors</span><span class="p4-t"><img src="/assets/art/hytte.svg" alt=""><span><span class="k">Hytteturmodus</span><b>På hver sin telefon</b><span class="p">Alle blir med fra sin egen telefon, med en kode eller QR-kode. Perfekt for hytta og vorspielet.</span></span></span></button><button class="p4-p" type="button" aria-expanded="false"><img src="/img/stue.jpg" alt="" style="object-position:55% 52%"><span class="cap">I stua</span><span class="cap2" aria-hidden="true">I stua</span><span class="p4-t"><img src="/assets/art/bil.svg" alt=""><span><span class="k">Bilturmodus</span><b>På én telefon</b><span class="p">Telefonen sendes rundt. Perfekt for bilturen, ferga og venterommet.</span></span></span></button></div></div></section>
 
 <section id="mantra" class="sec"><div class="wrap narrow">
   <figure class="mantra card card--paper rv">
@@ -276,21 +285,8 @@ import('/js/vendor/htm-preact.js').then(async ({ html, render }) => {
 }).catch((e) => { document.getElementById('rules').textContent = 'Kunne ikke laste animasjonen.'; console.error(e); });
 
 (() => {
-  const M = {car: ['Bilturmodus', 'På én telefon', 'Telefonen sendes rundt. Perfekt for bilturen, ferga og venterommet.', 'bil.svg'], cabin: ['Hytteturmodus', 'På hver sin telefon', 'Alle blir med fra sin egen telefon, med en kode eller QR-kode. Perfekt for hytta og vorspielet.', 'hytte.svg']};
-  const res = document.getElementById('mv3r'), inputs = [...document.querySelectorAll('input[name="mv3"]')], $ = (id) => document.getElementById(id);
-  // the tail of the card points at the chosen picture: under it when the card reaches that far, otherwise at the card's edge and leaning towards it (not on a phone: the tail is hidden there)
-  const place = () => {
-    const i = inputs.findIndex((x) => x.checked), pick = inputs[i].closest('label').getBoundingClientRect(), box = res.getBoundingClientRect();
-    const want = pick.left + pick.width / 2 - box.left, x = Math.min(Math.max(want, 56), box.width - 56);
-    const tilt = Math.max(-22, Math.min(22, Math.atan2(want - x, Math.max(box.top - pick.bottom + 40, 40)) * 180 / Math.PI));
-    res.style.setProperty('--pick', x.toFixed(0) + 'px'); res.style.setProperty('--tilt', tilt.toFixed(1) + 'deg');
-  };
-  addEventListener('resize', place); addEventListener('load', place);
-  inputs.forEach((r) => r.addEventListener('change', () => {
-    place(); res.classList.add('sw');
-    setTimeout(() => { const m = M[r.value]; $('mv3vt').textContent = m[0]; $('mv3h').textContent = m[1]; $('mv3p').textContent = m[2]; $('mv3a').src = '/assets/art/' + m[3]; res.classList.remove('sw'); }, 230);
-  }));
-  place();
+  const panels = [...document.querySelectorAll('.p4-p')];
+  panels.forEach((b) => b.addEventListener('click', () => panels.forEach((o) => o.setAttribute('aria-expanded', o === b ? 'true' : 'false'))));
 })();
 
 </script>
