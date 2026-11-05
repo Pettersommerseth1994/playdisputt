@@ -119,3 +119,11 @@ body { overflow-x: clip; }
 /* ---- «Spill nå» that sticks to the top of the screen (8 px from the edge) once the one in the hero has scrolled away ---- */
 .sticky-cta { position: fixed; z-index: 60; top: calc(8px + env(safe-area-inset-top, 0px)); left: 50%; translate: -50% -220%; opacity: 0; pointer-events: none; transition: translate 0.45s var(--ease), opacity 0.3s; }
 .sticky-cta.show { translate: -50% 0; opacity: 1; pointer-events: auto; }
+
+/* ---- the suggestion of Danish or Swedish (for a visitor whose browser is Danish or Swedish), a little card at the bottom */
+.langcard { position: fixed; z-index: 70; left: 50%; bottom: calc(1rem + env(safe-area-inset-bottom, 0px)); translate: -50% 140%; width: min(calc(100vw - 2rem), 25rem); padding: var(--s-4) var(--s-5); display: grid; gap: var(--s-3); text-align: center; opacity: 0; transition: translate 0.6s var(--ease), opacity 0.4s; }
+.langcard.show { translate: -50% 0; opacity: 1; }
+.langcard p { margin: 0; font-family: var(--font-display); font-weight: 900; font-size: 1.2rem; line-height: 1.15; color: var(--ink); }
+.langcard .row { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: var(--s-3) var(--s-4); }
+.langcard .no { background: none; border: 0; padding: 0.3rem 0.2rem; font: inherit; font-size: var(--fs-small); font-weight: 800; color: rgb(var(--ink-rgb) / 0.75); text-decoration: underline; text-underline-offset: 0.25em; cursor: pointer; }
+@media (prefers-reduced-motion: reduce) { .langcard { transition: none; } }

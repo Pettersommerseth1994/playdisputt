@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="sv" data-sprak="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Disputt: Diskutera, manipulera och vinn</title>
+<meta name="description" content="Disputt är ett frågespel med osämjegaranti för 2–10 vänner. En av er är impostorn som vet svaret och försöker lura resten. Inget konto, ingen app.">
+<link rel="canonical" href="https://playdisputt.com/sv/">
+<link rel="alternate" hreflang="nb" href="https://playdisputt.com/">
+<link rel="alternate" hreflang="da" href="https://playdisputt.com/da/">
+<link rel="alternate" hreflang="sv" href="https://playdisputt.com/sv/">
+<link rel="alternate" hreflang="x-default" href="https://playdisputt.com/">
+<meta name="theme-color" content="#6a1428">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Disputt">
+<meta property="og:locale" content="sv_SE">
+<meta property="og:title" content="Disputt: Diskutera, manipulera och vinn">
+<meta property="og:description" content="Ett frågespel med osämjegaranti för 2–10 vänner. En av er är impostorn och försöker lura resten.">
+<meta property="og:url" content="https://playdisputt.com/sv/">
+<meta property="og:image" content="https://playdisputt.com/assets/share/disputt-delingsbilde.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/fraunces-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/components.css">
+<link rel="stylesheet" href="/css/landing.css">
+<style>
+
+.zz { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(2rem, 6vw, 6rem); align-items: center; }
+.zz.rev .zt { order: -1; }
+.zz .blob { width: min(100%, 26rem); aspect-ratio: 4 / 5; justify-self: center; }
+.zt { display: grid; gap: var(--s-4); align-content: center; }
+.zt .nums { justify-content: flex-start; }
+.mini2 { display: grid; gap: var(--s-4); }
+.mini2 .mode { grid-template-columns: 5rem 1fr; align-items: center; gap: var(--s-1) var(--s-4); padding: var(--s-4) var(--s-5); }
+.mini2 .mode img { grid-row: span 3; width: 5rem; }
+.mini2 .mode h3 { font-size: 1.4rem; }
+.bubbles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-5); align-items: start; margin-top: var(--s-6); }
+.bubbles .quote { padding: 2.8rem 2.4rem; }
+.bubbles .quote:nth-child(1) { border-radius: var(--blob-b); rotate: -2deg; } .bubbles .quote:nth-child(2) { border-radius: var(--blob-c); margin-top: 2.4rem; rotate: 1.5deg; } .bubbles .quote:nth-child(3) { border-radius: var(--blob-d); rotate: -1deg; }
+.bubbles .quote p { font-size: 1.2rem; }
+.ratebar { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--s-5); }
+.coins { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-5); max-width: 60rem; margin-inline: auto; }
+.coin { position: relative; display: grid; justify-items: center; align-content: center; gap: 0.3rem; aspect-ratio: 1; padding: var(--s-5); text-align: center; color: var(--ink); background: var(--tex-grain), var(--cream); box-shadow: var(--shadow-2); }
+.coin:nth-child(1) { border-radius: var(--blob-a); background: var(--tex-grain), var(--tex-light), var(--yellow); } .coin:nth-child(2) { border-radius: var(--blob-b); } .coin:nth-child(3) { border-radius: var(--blob-c); }
+.coin b { font-family: var(--font-display); font-weight: 900; font-size: 1.36rem; line-height: 1.1; }
+.coin .p { font-family: var(--font-display); font-weight: 900; font-size: clamp(2.6rem, 5.6vw, 4.2rem); line-height: 1; }
+.coin span { font-weight: 700; color: rgb(var(--ink-rgb) / 0.78); }
+.coin em { position: absolute; top: 12%; right: 10%; padding: 0.15rem 0.7rem; border-radius: var(--r-pill); font-style: normal; font-size: 0.78rem; font-weight: 800; color: var(--cream); background: var(--burgundy-600); rotate: 6deg; }
+@media (max-width: 52rem) { .zz { grid-template-columns: 1fr; } .zz.rev .zt { order: 0; } .zz .blob { width: min(76vw, 21rem); } .bubbles { grid-template-columns: 1fr; } .bubbles .quote:nth-child(2) { margin-top: 0; } }
+
+.zz .zt .lead { max-width: 30rem; }
+.numbox { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-3); max-width: 30rem; }
+.numbox .card { display: grid; gap: 0.1rem; padding: var(--s-4) var(--s-3); text-align: center; }
+.numbox .card:nth-child(1) { rotate: -1.5deg; } .numbox .card:nth-child(2) { rotate: 1deg; } .numbox .card:nth-child(3) { rotate: -0.8deg; }
+.numbox b { font-family: var(--font-display); font-weight: 900; font-size: clamp(1.9rem, 3.6vw, 2.8rem); line-height: 1; }
+.numbox span { font-size: var(--fs-small); font-weight: 700; color: rgb(var(--ink-rgb) / 0.78); }
+.langs { display: grid; gap: var(--s-3); }
+.langs p { font-size: var(--fs-small); color: var(--fg-muted); max-width: 26rem; }
+.lrow { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.lchip { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.21rem 0.63rem 0.21rem 0.25rem; font-size: 0.74rem; border-radius: var(--r-pill); font-weight: 800; color: var(--ink); background: var(--tex-grain), var(--cream); box-shadow: var(--shadow-1); }
+a.lchip { text-decoration: none; transition: transform 0.25s var(--ease), box-shadow 0.25s; }
+a.lchip:hover { transform: translateY(-2px) rotate(-1.5deg); }
+a.lchip[aria-current] { box-shadow: 0 0 0 2px var(--yellow), var(--shadow-1); }
+.lflag { position: relative; display: block; width: 1.33rem; aspect-ratio: 1; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 2px rgb(var(--ink-rgb) / 0.7); }
+.lflag svg { display: block; width: 100%; height: 100%; }
+.story-col { display: grid; justify-items: center; gap: var(--s-3); }
+#rules { width: min(100%, 24rem); }
+.story-col .rgS { width: 100%; }
+.story-hint { font-size: var(--fs-small); color: var(--fg-muted); text-align: center; }
+.calm .rv { transform: none; filter: none; transition: opacity 0.9s ease; transition-delay: var(--d, 0s); }
+.calm .blob.rv { transform: none; }
+.calm .rv.in { opacity: 1; }
+.btn--slim { white-space: nowrap; }
+/* the second blob over the first, at its bottom right */
+.mantra { position: relative; display: grid; gap: var(--s-4); justify-items: center; padding: clamp(2rem, 5vw, 3.2rem) clamp(1.5rem, 5vw, 3.5rem) clamp(2.2rem, 5vw, 3.4rem); margin: 0; text-align: center; rotate: -1deg; }
+.mantra::after { content: ''; position: absolute; left: 3.2rem; bottom: -0.9rem; width: 1.8rem; height: 1.8rem; background: var(--cream); rotate: 45deg; border-radius: 0.2rem; box-shadow: 4px 4px 0 var(--edge); z-index: -1; }
+.mchip { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.3rem 0.95rem; border-radius: var(--r-pill); font-weight: 800; font-size: var(--fs-small); background: var(--tex-light), var(--yellow); box-shadow: 0 3px 0 var(--yellow-deep); }
+.mchip svg { width: 1.1rem; height: 1.1rem; }
+.mantra blockquote { margin: 0; display: grid; gap: var(--s-3); }
+.mantra .m1 { font-family: var(--font-display); font-weight: 900; font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.02; letter-spacing: -0.02em; }
+.mantra blockquote p:not(.m1) { max-width: 30rem; margin-inline: auto; color: rgb(var(--ink-rgb) / 0.82); }
+.mantra figcaption { font-family: var(--font-display); font-weight: 900; font-size: 1.2rem; }
+.calm .mantra.rv { transform: none; }
+.duo { position: relative; justify-self: center; width: min(100%, 26rem); }
+.duo > .blob { width: 100%; aspect-ratio: 4 / 5; }
+.duo .duo-b { position: absolute; width: 55.2%; aspect-ratio: 1; right: -16%; bottom: -9%; z-index: 2; border-width: 0.5rem; }
+/* the price blobs: 30 % smaller, the text and what is in them as before */
+.coins { align-items: center; gap: var(--s-4); max-width: 41.5rem; }
+.coin { width: 100%; justify-self: center; aspect-ratio: 212 / 192; padding: 0.3rem; gap: 0.16rem; }
+.coin b, .coin .p { white-space: nowrap; }
+.coin .p { font-size: 2.96rem; letter-spacing: -0.02em; }
+.coin span { text-wrap: balance; max-width: 9.5rem; font-size: 0.8rem; }
+.coin em { top: -0.5rem; right: 0.4rem; font-size: 0.64rem; }
+.calm .duo.rv { transform: none; }
+@media (max-width: 40rem) {
+  .coins { gap: 0.4rem; max-width: none; }
+  .coin { padding: 0.15rem; gap: 0.08rem; }
+  .coin b { font-size: 0.8rem; }
+  .coin .p { font-size: 1.55rem; }
+  .coin span { font-size: 0.62rem; max-width: 5.6rem; line-height: 1.15; }
+  .coin em { font-size: 0.5rem; padding: 0.1rem 0.45rem; top: -0.4rem; right: 0; }
+}
+@media (max-width: 24rem) { .coin .p { font-size: 1.35rem; } .coin b { font-size: 0.72rem; } .coin span { font-size: 0.56rem; max-width: 3.9rem; } }
+@media (max-width: 52rem) { .duo { width: min(70vw, 19rem); margin-right: 3rem; } }
+@media (max-width: 52rem) { .zz .story-col { order: 2; } .numbox { max-width: none; } #rules { width: min(100%, 22rem); } }
+
+.slik-head { display: grid; gap: var(--s-3); justify-items: center; text-align: center; margin-bottom: var(--s-6); }
+.slik-head .lead { max-width: 34rem; }
+.story-col { display: grid; justify-items: center; gap: var(--s-3); width: min(100%, 24rem); }
+.story-col #rules, .phone #rules { width: 100%; }
+.below { margin-top: clamp(2.5rem, 6vw, 4.5rem); }
+
+/* 1 Spotlys: the four steps as cards in a grid, the story on a big pink blob */
+.v1 .steps4 { grid-template-columns: 1fr 1fr; gap: var(--s-4); }
+.v1 .steps4 li { grid-template-columns: 1fr; align-content: start; gap: 0.3rem; padding: var(--s-5); border: 0; color: var(--ink); border-radius: var(--r-card); background: var(--tex-grain), var(--cream); box-shadow: var(--shadow-2); }
+.v1 .steps4 li:nth-child(2) { background: var(--tex-grain), var(--tex-light), var(--yellow-pale); } .v1 .steps4 li:nth-child(3) { background: var(--tex-grain), var(--tex-light), var(--pink-pale); } .v1 .steps4 li:nth-child(4) { background: var(--tex-grain), var(--tex-light), var(--blue-light); }
+.v1 .steps4 li:last-child { border-bottom: 0; }
+.v1 .steps4 .n { font-family: var(--font-text); font-size: 0.92rem; font-weight: 800; line-height: 1.2; color: var(--burgundy-500); } .v1 .steps4 p { color: rgb(var(--ink-rgb) / 0.82); }
+.spot { position: relative; display: grid; place-items: center; padding: 3.5rem 0; }
+.spot::before { content: ''; position: absolute; inset: 0 8%; border-radius: var(--blob-a); background: var(--tex-grain), var(--tex-light), var(--pink); box-shadow: var(--shadow-3); rotate: -2deg; animation: morph 18s ease-in-out infinite; }
+.spot .story-col { position: relative; rotate: 1.2deg; }
+.spot .story-hint { color: var(--ink); font-weight: 700; }
+@media (max-width: 40rem) { .v1 .steps4 { grid-template-columns: 1fr; } .spot { padding: 3.5rem 0 3.2rem; } .spot::before { inset: 0 -4%; border-radius: 4rem 6rem 4.5rem 7rem / 6rem 4rem 7rem 4.5rem; animation: none; } .story-hint span { display: block; } .ft .btn--slim:not(.sticky-cta) { display: none; } }
+
+/* 2 Telefon: the story inside a phone, two of the players peeking out behind it */
+.v2 .steps4 { max-width: 40rem; margin-inline: auto; }
+.phone-wrap { position: relative; display: grid; justify-items: center; }
+.phone { position: relative; z-index: 2; width: min(100%, 26.5rem); padding: 0.75rem; border-radius: 3rem; background: var(--ink); box-shadow: inset 0 0 0 3px rgb(var(--cream-rgb) / 0.2), var(--shadow-3); }
+.phone::before { content: ''; position: absolute; z-index: 3; left: 50%; top: 1.15rem; width: 5rem; height: 1.15rem; translate: -50% 0; border-radius: 1rem; background: var(--ink); box-shadow: inset 0 0 0 2px rgb(var(--cream-rgb) / 0.2); }
+.phone #rules { width: 100%; }
+.phone .rgS { border-radius: 2.3rem; box-shadow: none; }
+.phone .rgS__bars { top: 1.9rem; }
+.phone .rgS__top { padding-top: 2.6rem; }
+.phone-wrap .avatar { position: absolute; z-index: 1; --size: clamp(4rem, 8vw, 6.4rem); box-shadow: 0 5px 0 var(--edge); }
+.phone-wrap .pa1 { left: calc(50% - 21rem); top: 12%; --tilt: -8deg; } .phone-wrap .pa2 { right: calc(50% - 21rem); bottom: 14%; --tilt: 7deg; --delay: -3s; }
+.v2 .story-hint { margin-top: var(--s-3); }
+@media (max-width: 60rem) { .phone-wrap .avatar { display: none; } }
+
+/* 3 Gult bånd: the story on a yellow band across the whole page */
+.v3 .steps4 { max-width: 44rem; margin-inline: auto; }
+.band3 { position: relative; margin-top: clamp(3rem, 7vw, 5rem); padding: clamp(3rem, 7vw, 5rem) var(--pad); color: var(--ink); background: var(--tex-grain), var(--tex-light), var(--yellow); border-radius: 44px 64px 0 0 / 34px 46px 0 0; box-shadow: 0 -6px 0 var(--edge); }
+.band3 .in3 { width: min(100% , 62rem); margin-inline: auto; display: grid; grid-template-columns: 1fr auto; gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+.band3 h3 { font-size: clamp(2rem, 4.4vw, 3.4rem); line-height: 1; }
+.band3 p { margin-top: var(--s-3); font-size: var(--fs-lead); max-width: 26rem; color: rgb(var(--ink-rgb) / 0.82); }
+.band3 .arrow { display: inline-block; margin-top: var(--s-4); font-family: var(--font-display); font-weight: 900; font-size: 1.3rem; }
+.band3 .story-hint { color: rgb(var(--ink-rgb) / 0.8); font-weight: 700; }
+.band3 #rules { width: min(100%, 24rem); }
+@media (max-width: 52rem) { .band3 .in3 { grid-template-columns: 1fr; text-align: center; } .band3 p { margin-inline: auto; } .band3 .story-col { margin-inline: auto; } }
+
+/* 4 Papirkort: the four steps in a row, the story in a paper card with the eight moments of a round next to it */
+.v4 .steps4 { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-4); }
+.v4 .steps4 li { grid-template-columns: 1fr; gap: 0.4rem; padding: var(--s-4) 0 0; border-top: 4px solid var(--yellow); border-bottom: 0 !important; }
+.v4 .steps4 li:nth-child(2) { border-color: var(--orange); } .v4 .steps4 li:nth-child(3) { border-color: var(--pink); } .v4 .steps4 li:nth-child(4) { border-color: var(--blue-light); }
+.v4 .steps4 h3 { font-size: 1.3rem; } .v4 .steps4 p { font-size: var(--fs-small); }
+.paper4 { display: grid; grid-template-columns: auto 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; padding: clamp(1.6rem, 4vw, 3rem); color: var(--ink); }
+.paper4 h3 { font-size: clamp(1.7rem, 3vw, 2.4rem); line-height: 1.05; }
+.paper4 .lead { margin-top: var(--s-2); color: rgb(var(--ink-rgb) / 0.82); }
+.eight { display: flex; flex-wrap: wrap; gap: var(--s-2); margin: var(--s-4) 0 0; padding: 0; list-style: none; }
+.eight li { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.3rem 0.8rem 0.3rem 0.35rem; border-radius: var(--r-pill); font-weight: 700; font-size: var(--fs-small); background: rgb(var(--ink-rgb) / 0.09); }
+.eight b { display: grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 50%; font-family: var(--font-display); font-weight: 900; font-size: 0.95rem; background: var(--tex-light), var(--yellow); }
+.paper4 .story-hint { color: rgb(var(--ink-rgb) / 0.78); }
+@media (max-width: 60rem) { .v4 .steps4 { grid-template-columns: 1fr 1fr; } .paper4 { grid-template-columns: 1fr; justify-items: center; } }
+@media (max-width: 40rem) { .v4 .steps4 { grid-template-columns: 1fr; } }
+
+/* 5 Klistremerke: the story tilted like a sticker, with a «Trykk!» badge */
+.v5 .steps4 { max-width: 40rem; margin-inline: auto; }
+.sticker { position: relative; display: grid; justify-items: center; gap: var(--s-3); }
+.sticker .story-col { position: relative; rotate: -2.2deg; padding: 0.6rem; border-radius: var(--r-card); background: var(--cream); box-shadow: var(--shadow-3); }
+.sticker .story-col .story-hint { color: var(--ink); padding-bottom: 0.2rem; font-weight: 700; }
+.badge5 { position: absolute; z-index: 3; right: calc(50% - 15.5rem); top: -1.6rem; display: grid; place-items: center; width: 5.6rem; height: 5.6rem; padding: 0.6rem; border-radius: 50% 46% 54% 48% / 48% 52% 48% 52%; text-align: center; font-family: var(--font-display); font-weight: 900; font-size: 1.15rem; line-height: 1; color: var(--ink); background: var(--tex-grain), var(--tex-light), var(--yellow); box-shadow: 0 5px 0 var(--yellow-deep), 0 5px 0 1px var(--edge); rotate: 12deg; animation: wobble 5s ease-in-out infinite; }
+.sticker .avatar { position: absolute; z-index: 3; --size: 4.6rem; box-shadow: 0 5px 0 var(--edge); }
+.sticker .sa1 { left: calc(50% - 17.5rem); bottom: 4rem; --tilt: -7deg; } 
+.scr { display: inline-block; padding-bottom: 0.28em; background: url('/assets/art/scribble-underline.svg') left bottom / 100% 0.42em no-repeat; }
+@media (max-width: 52rem) { .badge5 { right: calc(50% - 12.5rem); } .sticker .sa1 { display: none; } }
+
+.mv3 { display: grid; gap: var(--s-6); justify-items: center; }
+.mv3-picks { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(0.8rem, 3vw, 2.4rem); width: min(100%, 62rem); margin: 0; padding: 0; border: 0; }
+.mv3-pick { position: relative; display: grid; justify-items: center; gap: var(--s-3); cursor: pointer; user-select: none; -webkit-user-select: none; }
+.mv3-pick:nth-child(odd) { transform: translateY(1rem); }
+.mv3-pick input { position: absolute; opacity: 0; pointer-events: none; }
+.mv3-pick .blob { width: 100%; aspect-ratio: 1 / 1.05; transition: transform 0.45s var(--ease), box-shadow 0.3s; }
+.mv3-pick:hover .blob { transform: scale(1.05) rotate(-2deg); }
+.mv3-pick:has(input:checked) .blob { transform: scale(1.06) rotate(1.5deg); box-shadow: 0 0 0 0.45rem var(--yellow), var(--shadow-3); }
+.mv3-pick:has(input:focus-visible) .blob { outline: 3px solid var(--yellow); outline-offset: 6px; }
+.mv3-pick .cap { font-family: var(--font-display); font-weight: 900; font-size: clamp(1.1rem, 2.2vw, 1.5rem); line-height: 1.1; }
+.mv3-pick:has(input:checked) .cap { color: var(--yellow); }
+.mv3-res { position: relative; display: grid; grid-template-columns: 7rem 1fr; gap: var(--s-5); align-items: center; width: min(100%, 44rem); padding: var(--s-5) var(--s-6); transition: opacity 0.25s, transform 0.25s; }
+.mv3-res.sw { opacity: 0; transform: translateY(10px); }
+.mv3-res img { width: 100%; height: auto; }
+.mv3-res .vt { font-size: 0.92rem; font-weight: 800; color: var(--orange-deep); }
+.mv3-res h3 { font-size: clamp(1.7rem, 3vw, 2.4rem); line-height: 1.02; }
+.mv3-res p { color: rgb(var(--ink-rgb) / 0.82); }
+.mv3-res::before { content: ''; position: absolute; top: -0.7rem; left: var(--pick, 50%); width: 1.5rem; height: 1.5rem; background: var(--cream); rotate: 45deg; border-radius: 0.2rem; transition: left 0.5s var(--ease); }
+.mv3-q { font-family: var(--font-display); font-weight: 900; font-size: clamp(1.3rem, 2.4vw, 1.8rem); text-align: center; }
+@media (max-width: 52rem) { .mv3-picks { grid-template-columns: 1fr 1fr; width: min(100%, 22rem); } .mv3-pick:nth-child(odd) { transform: none; } .mv3-pick:nth-child(even) { transform: translateY(0.8rem); } .mv3-res { grid-template-columns: 1fr; text-align: center; justify-items: center; padding: var(--s-5); } .mv3-res img { width: 6rem; } .mv3-res::before { left: 50%; } }
+
+.cards2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-5); } @media (max-width: 52rem) { .cards2 { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body class="calm">
+<header class="hero">
+  <div class="stack">
+    <a class="logo-sticker hero-logo" href="#" aria-label="Disputt"><img src="/assets/logo/disputt-logo.svg" alt="Disputt" width="300" height="130"></a>
+    <figure class="blob blob--xl cf">
+      <img src="/img/camping.jpg" alt="" style="object-position: 50% 52%"><img src="/img/hytta.jpg" alt="" style="object-position: 60% 34%"><img src="/img/vors.jpg" alt="" style="object-position: 40% 42%"><img src="/img/stue.jpg" alt="" style="object-position: 55% 55%">
+    </figure>
+    <span class="avatar floaty ey e1" style="--tile: var(--orange)" aria-hidden="true"><img src="/assets/avatars/mandarin.svg" alt=""></span>
+    <span class="avatar floaty ey e2" style="--tile: var(--lime-light)" aria-hidden="true"><img src="/assets/avatars/lime.svg" alt=""></span>
+    <h1 class="ta" aria-label="Diskutera, manipulera och vinn.">Diskutera, manipulera <span class="y">och vinn.</span></h1>
+  </div>
+  <div class="cta">
+    <a class="btn btn--slim" href="https://disputt.site/?sprak=sv">Starta ett bråk</a>
+    <p class="tag">Ett frågespel med osämjegaranti</p>
+  </div>
+  <a class="cue" href="#om" aria-label="Bläddra ner">↓</a>
+</header>
+<a class="btn btn--slim sticky-cta" href="https://disputt.site/?sprak=sv">Starta ett bråk</a>
+<main class="v1">
+<section id="om" class="sec"><div class="wrap zz">
+  <div class="duo rv"><figure class="blob"><img src="/img/camping.jpg" alt="" style="object-position:50% 52%"></figure><figure class="blob blob--c duo-b"><img src="/img/stue.jpg" alt="" style="object-position:55% 52%"></figure></div>
+  <div class="zt"><div class="lrow rv"><a class="lchip" href="/" data-sprak="no" hreflang="nb"><span class="lflag"><svg viewBox="0 0 22 16" preserveAspectRatio="xMidYMid slice"><rect width="22" height="16" fill="#ba0c2f"/><rect x="6" width="4" height="16" fill="#fff"/><rect y="6" width="22" height="4" fill="#fff"/><rect x="7" width="2" height="16" fill="#00205b"/><rect y="7" width="22" height="2" fill="#00205b"/></svg></span>Norsk</a><a class="lchip" href="/da/" data-sprak="da" hreflang="da"><span class="lflag"><svg viewBox="0 0 37 28" preserveAspectRatio="xMidYMid slice"><rect width="37" height="28" fill="#c8102e"/><rect x="12" width="4" height="28" fill="#fff"/><rect y="12" width="37" height="4" fill="#fff"/></svg></span>Dansk</a><a class="lchip" href="/sv/" aria-current="page" data-sprak="sv" hreflang="sv"><span class="lflag"><svg viewBox="0 0 16 10" preserveAspectRatio="xMidYMid slice"><rect width="16" height="10" fill="#006aa7"/><rect x="5" width="2" height="10" fill="#fecc02"/><rect y="4" width="16" height="2" fill="#fecc02"/></svg></span>Svenska</a></div><h2 class="big">Ett sällskapsspel, inte ett skärmspel</h2><p class="lead rv">Telefonen läser upp frågan och håller koll på poängen. Resten sker runt bordet. Allt körs i webbläsaren, utan app och utan konto.</p><div class="numbox"><div class="card card--paper rv" style="--d:0.0s"><b>2–10</b><span>spelare</span></div><div class="card card--paper rv" style="--d:0.1s"><b>250+</b><span>frågor</span></div><div class="card card--paper rv" style="--d:0.2s"><b>3</b><span>språk</span></div></div><div class="langs rv"><p>Spelet finns på norska, danska och svenska, med egna frågor om varje land.</p></div></div>
+</div></section>
+
+<section id="slik" class="sec"><div class="wrap mid"><div class="slik-head"><h2 class="h2">Så spelar ni</h2><p class="lead rv">En av er är impostorn och vet svaret. Resten måste bli överens om rätt svar utan att låta sig luras.</p></div><ol class="steps4"><li class="rv" style="--d:0.0s"><span class="n">Steg 1</span><div><h3>Alla får en roll</h3><p>De flesta är lojala, men en är impostor. Är ni sex eller fler, är det två impostorer.</p></div></li><li class="rv" style="--d:0.08s"><span class="n">Steg 2</span><div><h3>Diskutera!</h3><p>Gruppen får en fråga, och en av er läser upp den. Bara impostorn vet svaret och försöker lura er att svara fel.</p></div></li><li class="rv" style="--d:0.16s"><span class="n">Steg 3</span><div><h3>Lås svaret</h3><p>Bli överens och lås svaret. Ni måste själva komma på hur ni ska bli överens. Sedan räknas det ner från 5.</p></div></li><li class="rv" style="--d:0.24s"><span class="n">Steg 4</span><div><h3>Impostorn avslöjar sig</h3><p>Impostorn säger rätt svar högt. Rätt svar ger de lojala poäng, fel svar ger impostorn poäng.</p></div></li></ol><div class="spot below rv"><div class="story-col"><div id="rules" aria-label="Så spelar ni" translate="no"></div><p class="story-hint"><span>Tryck för att gå vidare.</span> <span>Håll nedtryckt för att pausa.</span></p></div></div></div></section>
+
+<section id="maater" class="sec"><div class="wrap"><div class="sec-head center"><h2 class="h2">Spela var som helst</h2><p class="lead rv">Välj var ni är, så visar vi hur ni spelar bäst.</p></div><div class="mv3" translate="no"><p class="mv3-q rv">Var ska ni spela?</p><fieldset class="mv3-picks rv"><legend class="sr-only">Välj var ni spelar</legend><label class="mv3-pick"><input type="radio" name="mv3" value="car" checked><figure class="blob "><img src="/img/camping.jpg" alt="" style="object-position:50% 52%"></figure><span class="cap">På campingen</span></label><label class="mv3-pick"><input type="radio" name="mv3" value="cabin"><figure class="blob blob--b"><img src="/img/hytta.jpg" alt="" style="object-position:60% 32%"></figure><span class="cap">I stugan</span></label><label class="mv3-pick"><input type="radio" name="mv3" value="cabin"><figure class="blob blob--c"><img src="/img/vors.jpg" alt="" style="object-position:38% 40%"></figure><span class="cap">På förfest</span></label><label class="mv3-pick"><input type="radio" name="mv3" value="car"><figure class="blob blob--d"><img src="/img/stue.jpg" alt="" style="object-position:55% 52%"></figure><span class="cap">I vardagsrummet</span></label></fieldset><div class="mv3-res card card--paper rv" id="mv3r"><img id="mv3a" src="/assets/art/bil.svg" alt=""><div><span class="vt" id="mv3vt">Bilresläge</span><h3 id="mv3h">På en telefon</h3><p id="mv3p">Telefonen skickas runt bordet. Perfekt för bilresan, färjan och väntrummet.</p></div></div></div></div></section>
+
+<section id="mantra" class="sec"><div class="wrap narrow">
+  <figure class="mantra card card--paper rv">
+    <span class="mchip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3L14.65 8.96L21.13 9.63L16.28 13.99L17.64 20.37L12 17.1L6.36 20.37L7.72 13.99L2.87 9.63L9.35 8.96Z" fill="currentColor" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/></svg>Vårt mantra</span>
+    <blockquote><p class="m1">Titta på varandra, inte på skärmen.</p><p>Disputt är ett socialt sällskapsspel, gjort för att spelas mellan människor. Telefonen är bara ett hjälpmedel för quizen. Vi vill att du använder den så lite som möjligt.</p></blockquote>
+    <figcaption>Team Disputt</figcaption>
+  </figure>
+</div></section>
+
+<section id="pris" class="sec"><div class="wrap">
+  <div class="sec-head center"><h2 class="h2">De tre första rundorna är gratis</h2><p class="lead rv">Sedan betalar bara värden, och alla kan vara med.</p></div>
+  <div class="coins">
+    <div class="coin rv"><em>Mest populär</em><b>En kväll</b><div class="p">149 NOK</div><span>Gäller i 12 timmar</span></div>
+    <div class="coin rv" style="--d:.1s"><b>En weekend</b><div class="p">199 NOK</div><span>Gäller i 72 timmar</span></div>
+    <div class="coin rv" style="--d:.2s"><b>För ett år</b><div class="p">299 NOK</div><span>Gäller i 12 månader</span></div>
+  </div>
+</div></section>
+</main>
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-top"><a class="logo-sticker logo-sticker--sm" href="#" aria-label="Disputt"><img src="/assets/logo/disputt-logo.svg" alt="Disputt" width="300" height="130"></a><span class="tg">Ett frågespel med osämjegaranti</span><a class="btn btn--slim" href="https://disputt.site/?sprak=sv">Starta ett bråk</a></div>
+    <div class="ft-cols">
+      <div><h5>Spelet</h5><a href="#slik">Så spelar ni</a><a href="#maater">Spelsätt</a><a href="#pris">Pris</a></div>
+      <div><h5>Kontakt</h5><a href="mailto:kontakt@disputt.site">kontakt@disputt.site</a><a href="https://disputt.site/?sprak=sv">disputt.site</a></div>
+      <div><h5>Juridiskt</h5><a href="https://disputt.site/vilkar.html?sprak=sv">Villkor</a><a href="https://disputt.site/personvern.html?sprak=sv">Integritet</a></div>
+    </div>
+    <p class="ft-legal">© 2026 Pesom Holding AS · Norge</p>
+  </div>
+</footer>
+<script src="/js/landing.js"></script>
+<script type="module">
+
+// The game's own animated rules ("Slik spiller dere"), drawn by the same Preact component the game uses (public/js/regler/).
+import('/js/vendor/htm-preact.js').then(async ({ html, render }) => {
+  const { setLang } = await import('/js/i18n/lang.js'); // the story is the game's own, in the language of the page
+  setLang(document.documentElement.dataset.sprak || 'no'); // (data-sprak: the game's lang.js rewrites <html lang> itself as soon as it is loaded)
+  const { RulesHub } = await import('/js/regler/hub.js');
+  render(html`<${RulesHub} />`, document.getElementById('rules'));
+}).catch((e) => { document.getElementById('rules').textContent = 'Kunde inte läsa in animationen.'; console.error(e); });
+
+(() => {
+  const M = {car: ['Bilresläge', 'På en telefon', 'Telefonen skickas runt bordet. Perfekt för bilresan, färjan och väntrummet.', 'bil.svg'], cabin: ['Stugläge', 'På varsin telefon', 'Alla går med från sin egen telefon med en kod eller QR-kod. Perfekt för stugan och förfesten.', 'hytte.svg']};
+  const res = document.getElementById('mv3r'), inputs = [...document.querySelectorAll('input[name="mv3"]')], $ = (id) => document.getElementById(id);
+  const place = () => { const i = inputs.findIndex((x) => x.checked), n = inputs.length; res.style.setProperty('--pick', (100 / n * (i + 0.5)).toFixed(1) + '%'); };
+  inputs.forEach((r) => r.addEventListener('change', () => {
+    place(); res.classList.add('sw');
+    setTimeout(() => { const m = M[r.value]; $('mv3vt').textContent = m[0]; $('mv3h').textContent = m[1]; $('mv3p').textContent = m[2]; $('mv3a').src = '/assets/art/' + m[3]; res.classList.remove('sw'); }, 230);
+  }));
+  place();
+})();
+
+</script>
+</body>
+</html>
