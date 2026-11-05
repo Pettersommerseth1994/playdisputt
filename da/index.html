@@ -104,6 +104,13 @@ a.lchip[aria-current] { box-shadow: 0 0 0 2px var(--yellow), var(--shadow-1); }
   .coin em { font-size: 0.5rem; padding: 0.1rem 0.45rem; top: -0.4rem; right: 0; }
 }
 @media (max-width: 24rem) { .coin .p { font-size: 1.35rem; } .coin b { font-size: 0.72rem; } .coin span { font-size: 0.56rem; max-width: 3.9rem; } }
+/* «ca. 109 DKK» under the price on the Danish and Swedish pages (landing_i18n.py): small, after all the rules above so that it wins */
+.coin .p small { display: block; margin-top: 0.3rem; font-family: var(--font-text); font-size: 0.9rem; font-weight: 700; letter-spacing: 0; line-height: 1; white-space: nowrap; color: rgb(var(--ink-rgb) / 0.7); }
+@media (max-width: 40rem) { .coin .p small { margin-top: 0.12rem; font-size: 0.5rem; } }
+@media (max-width: 24rem) { .coin .p small { font-size: 0.44rem; } }
+/* «NOK» is wider than «kr»: on a phone the price in Danish and Swedish is a little smaller so that it stays inside the blob */
+@media (max-width: 40rem) { html[lang='da'] .coin .p, html[lang='sv'] .coin .p { font-size: 1.4rem; } }
+@media (max-width: 24rem) { html[lang='da'] .coin .p, html[lang='sv'] .coin .p { font-size: 1.12rem; } }
 @media (max-width: 52rem) { .duo { width: min(70vw, 19rem); margin-right: 3rem; } }
 @media (max-width: 52rem) { .zz .story-col { order: 2; } .numbox { max-width: none; } #rules { width: min(100%, 22rem); } }
 
@@ -239,10 +246,11 @@ a.lchip[aria-current] { box-shadow: 0 0 0 2px var(--yellow), var(--shadow-1); }
 <section id="pris" class="sec"><div class="wrap">
   <div class="sec-head center"><h2 class="h2">De tre første runder er gratis</h2><p class="lead rv">Så er det kun værten, der betaler, og alle kan være med.</p></div>
   <div class="coins">
-    <div class="coin rv"><em>Mest populær</em><b>En aften</b><div class="p">149 NOK</div><span>Gælder i 12 timer</span></div>
-    <div class="coin rv" style="--d:.1s"><b>En weekend</b><div class="p">199 NOK</div><span>Gælder i 72 timer</span></div>
-    <div class="coin rv" style="--d:.2s"><b>For ét år</b><div class="p">299 NOK</div><span>Gælder i 12 måneder</span></div>
+    <div class="coin rv"><em>Mest populær</em><b>En aften</b><div class="p">149 NOK<small>ca. 109 DKK</small></div><span>Gælder i 12 timer</span></div>
+    <div class="coin rv" style="--d:.1s"><b>En weekend</b><div class="p">199 NOK<small>ca. 149 DKK</small></div><span>Gælder i 72 timer</span></div>
+    <div class="coin rv" style="--d:.2s"><b>For ét år</b><div class="p">299 NOK<small>ca. 219 DKK</small></div><span>Gælder i 12 måneder</span></div>
   </div>
+  <p class="note rv">Du betaler i norske kroner (NOK). Beløb i DKK er omtrentlige og kan afvige lidt med din banks kurs.</p>
 </div></section>
 </main>
 <footer class="ft">
