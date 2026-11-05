@@ -183,7 +183,7 @@ a.lchip[aria-current] { box-shadow: 0 0 0 2px var(--yellow), var(--shadow-1); }
 .scr { display: inline-block; padding-bottom: 0.28em; background: url('/assets/art/scribble-underline.svg') left bottom / 100% 0.42em no-repeat; }
 @media (max-width: 52rem) { .badge5 { right: calc(50% - 12.5rem); } .sticker .sa1 { display: none; } }
 
-.mv3 { position: relative; display: grid; gap: var(--s-6); justify-items: center; }
+.mv3 { display: grid; gap: var(--s-6); justify-items: center; }
 .mv3-picks { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(0.8rem, 3vw, 2.4rem); width: min(100%, 62rem); margin: 0; padding: 0; border: 0; }
 .mv3-pick { position: relative; display: grid; justify-items: center; gap: var(--s-3); cursor: pointer; user-select: none; -webkit-user-select: none; }
 .mv3-pick:nth-child(odd) { transform: translateY(1rem); }
@@ -194,16 +194,15 @@ a.lchip[aria-current] { box-shadow: 0 0 0 2px var(--yellow), var(--shadow-1); }
 .mv3-pick:has(input:focus-visible) .blob { outline: 3px solid var(--yellow); outline-offset: 6px; }
 .mv3-pick .cap { font-family: var(--font-display); font-weight: 900; font-size: clamp(1.1rem, 2.2vw, 1.5rem); line-height: 1.1; }
 .mv3-pick:has(input:checked) .cap { color: var(--yellow); }
-.mv3-res { position: relative; display: grid; grid-template-columns: 7rem 1fr; gap: var(--s-5); align-items: center; width: min(100%, 44rem); padding: var(--s-5) var(--s-6); transition: opacity 0.25s, transform 0.25s; }
+.mv3-res { position: relative; margin-top: 20px; display: grid; grid-template-columns: 7rem 1fr; gap: var(--s-5); align-items: center; width: min(100%, 44rem); padding: var(--s-5) var(--s-6); transition: opacity 0.25s, transform 0.25s; }
 .mv3-res.sw { opacity: 0; transform: translateY(10px); }
 .mv3-res img { width: 100%; height: auto; }
 .mv3-res .vt { font-size: 0.92rem; font-weight: 800; color: var(--orange-deep); }
 .mv3-res h3 { font-size: clamp(1.7rem, 3vw, 2.4rem); line-height: 1.02; }
 .mv3-res p { color: rgb(var(--ink-rgb) / 0.82); }
-.mv3-tail { position: absolute; inset: 0; pointer-events: none; background: var(--cream); clip-path: polygon(0 0, 0 0, 0 0); opacity: 0; transition: clip-path 0.5s var(--ease), opacity 0.9s ease; }
-.mv3:has(.mv3-res.in) .mv3-tail { opacity: 1; }
+.mv3-res::before { content: ''; position: absolute; top: calc(-1.4rem + 1px); left: var(--pick, 50%); width: 2.2rem; height: 1.4rem; translate: -50% 0; rotate: var(--tilt, 0deg); transform-origin: 50% 100%; background: var(--cream); clip-path: polygon(50% 0, 100% 100%, 0 100%); transition: left 0.5s var(--ease), rotate 0.5s var(--ease); }
 .mv3-q { font-family: var(--font-display); font-weight: 900; font-size: clamp(1.3rem, 2.4vw, 1.8rem); text-align: center; }
-@media (max-width: 52rem) { .mv3-picks { grid-template-columns: 1fr 1fr; width: min(100%, 22rem); } .mv3-pick:nth-child(odd) { transform: none; } .mv3-pick:nth-child(even) { transform: translateY(0.8rem); } .mv3-res { grid-template-columns: 1fr; text-align: center; justify-items: center; padding: var(--s-5); } .mv3-res img { width: 6rem; } .mv3-tail { display: none; } }
+@media (max-width: 52rem) { .mv3-picks { grid-template-columns: 1fr 1fr; width: min(100%, 22rem); } .mv3-pick:nth-child(odd) { transform: none; } .mv3-pick:nth-child(even) { transform: translateY(0.8rem); } .mv3-res { grid-template-columns: 1fr; text-align: center; justify-items: center; padding: var(--s-5); } .mv3-res img { width: 6rem; } .mv3-res::before { display: none; } }
 
 .cards2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-5); } @media (max-width: 52rem) { .cards2 { grid-template-columns: 1fr; } }
 </style>
@@ -234,7 +233,7 @@ a.lchip[aria-current] { box-shadow: 0 0 0 2px var(--yellow), var(--shadow-1); }
 
 <section id="slik" class="sec"><div class="wrap mid"><div class="slik-head"><h2 class="h2">Så spelar ni</h2><p class="lead rv">En av er är impostorn och vet svaret. Resten måste bli överens om rätt svar utan att låta sig luras.</p></div><ol class="steps4"><li class="rv" style="--d:0.0s"><span class="n">Steg 1</span><div><h3>Alla får en roll</h3><p>De flesta är lojala, men en är impostor. Är ni sex eller fler, är det två impostorer.</p></div></li><li class="rv" style="--d:0.08s"><span class="n">Steg 2</span><div><h3>Diskutera!</h3><p>Gruppen får en fråga, och en av er läser upp den. Bara impostorn vet svaret och försöker lura er att svara fel.</p></div></li><li class="rv" style="--d:0.16s"><span class="n">Steg 3</span><div><h3>Lås svaret</h3><p>Bli överens och lås svaret. Ni måste själva komma på hur ni ska bli överens. Sedan räknas det ner från 5.</p></div></li><li class="rv" style="--d:0.24s"><span class="n">Steg 4</span><div><h3>Impostorn avslöjar sig</h3><p>Impostorn säger rätt svar högt. Rätt svar ger de lojala poäng, fel svar ger impostorn poäng.</p></div></li></ol><div class="spot below rv"><div class="story-col"><div id="rules" aria-label="Så spelar ni" translate="no"></div><p class="story-hint"><span>Tryck för att gå vidare.</span> <span>Håll nedtryckt för att pausa.</span></p></div></div></div></section>
 
-<section id="maater" class="sec"><div class="wrap"><div class="sec-head center"><h2 class="h2">Spela var som helst</h2><p class="lead rv">Välj var ni är, så visar vi hur ni spelar bäst.</p></div><div class="mv3" translate="no"><i class="mv3-tail" aria-hidden="true"></i><p class="mv3-q rv">Var ska ni spela?</p><fieldset class="mv3-picks rv"><legend class="sr-only">Välj var ni spelar</legend><label class="mv3-pick"><input type="radio" name="mv3" value="car" checked><figure class="blob "><img src="/img/camping.jpg" alt="" style="object-position:50% 52%"></figure><span class="cap">På campingen</span></label><label class="mv3-pick"><input type="radio" name="mv3" value="cabin"><figure class="blob blob--b"><img src="/img/hytta.jpg" alt="" style="object-position:52% 62%"></figure><span class="cap">I stugan</span></label><label class="mv3-pick"><input type="radio" name="mv3" value="cabin"><figure class="blob blob--c"><img src="/img/vors.jpg" alt="" style="object-position:38% 40%"></figure><span class="cap">På förfest</span></label><label class="mv3-pick"><input type="radio" name="mv3" value="car"><figure class="blob blob--d"><img src="/img/stue.jpg" alt="" style="object-position:55% 52%"></figure><span class="cap">I vardagsrummet</span></label></fieldset><div class="mv3-res card card--paper rv" id="mv3r"><img id="mv3a" src="/assets/art/bil.svg" alt=""><div><span class="vt" id="mv3vt">Bilresläge</span><h3 id="mv3h">På en telefon</h3><p id="mv3p">Telefonen skickas runt. Perfekt för bilresan, färjan och väntrummet.</p></div></div></div></div></section>
+<section id="maater" class="sec"><div class="wrap"><div class="sec-head center"><h2 class="h2">Spela var som helst</h2><p class="lead rv">Välj var ni är, så visar vi hur ni spelar bäst.</p></div><div class="mv3" translate="no"><p class="mv3-q rv">Var ska ni spela?</p><fieldset class="mv3-picks rv"><legend class="sr-only">Välj var ni spelar</legend><label class="mv3-pick"><input type="radio" name="mv3" value="car" checked><figure class="blob "><img src="/img/camping.jpg" alt="" style="object-position:50% 52%"></figure><span class="cap">På campingen</span></label><label class="mv3-pick"><input type="radio" name="mv3" value="cabin"><figure class="blob blob--b"><img src="/img/hytta.jpg" alt="" style="object-position:52% 62%"></figure><span class="cap">I stugan</span></label><label class="mv3-pick"><input type="radio" name="mv3" value="cabin"><figure class="blob blob--c"><img src="/img/vors.jpg" alt="" style="object-position:38% 40%"></figure><span class="cap">På förfest</span></label><label class="mv3-pick"><input type="radio" name="mv3" value="car"><figure class="blob blob--d"><img src="/img/stue.jpg" alt="" style="object-position:55% 52%"></figure><span class="cap">I vardagsrummet</span></label></fieldset><div class="mv3-res card card--paper rv" id="mv3r"><img id="mv3a" src="/assets/art/bil.svg" alt=""><div><span class="vt" id="mv3vt">Bilresläge</span><h3 id="mv3h">På en telefon</h3><p id="mv3p">Telefonen skickas runt. Perfekt för bilresan, färjan och väntrummet.</p></div></div></div></div></section>
 
 <section id="mantra" class="sec"><div class="wrap narrow">
   <figure class="mantra card card--paper rv">
@@ -279,22 +278,14 @@ import('/js/vendor/htm-preact.js').then(async ({ html, render }) => {
 (() => {
   const M = {car: ['Bilresläge', 'På en telefon', 'Telefonen skickas runt. Perfekt för bilresan, färjan och väntrummet.', 'bil.svg'], cabin: ['Stugläge', 'På varsin telefon', 'Alla går med från sin egen telefon med en kod eller QR-kod. Perfekt för stugan och förfesten.', 'hytte.svg']};
   const res = document.getElementById('mv3r'), inputs = [...document.querySelectorAll('input[name="mv3"]')], $ = (id) => document.getElementById(id);
-  // the tail runs from the card up to the chosen picture and touches it: it lands on the lower part of the picture on the side that faces the middle of the card, clear of the caption (not on a phone: hidden there)
-  const root = res.parentElement, tail = root.querySelector('.mv3-tail');
+  // the tail of the card points at the chosen picture: under it when the card reaches that far, otherwise at the card's edge and leaning towards it (not on a phone: the tail is hidden there)
   const place = () => {
-    const i = inputs.findIndex((x) => x.checked), label = inputs[i].closest('label'), blob = label.querySelector('.blob'), cap = label.querySelector('.cap');
-    const R = root.getBoundingClientRect(), C = res.getBoundingClientRect(), B = blob.getBoundingClientRect();
-    const bx = B.left + B.width / 2 - R.left, by = B.top + B.height / 2 - R.top, rx = B.width / 2, ry = B.height / 2;
-    const rg = document.createRange(); rg.selectNodeContents(cap);
-    const rects = [...rg.getClientRects()], capL = Math.min(...rects.map((r) => r.left)) - R.left, capR = Math.max(...rects.map((r) => r.right)) - R.left;
-    const towardsCard = bx <= C.left + C.width / 2 - R.left ? 1 : -1;
-    const lo = bx - rx * 0.97, hi = bx + rx * 0.97;
-    const tx = towardsCard > 0 ? Math.min(Math.max(capR + 18, bx), hi) : Math.max(Math.min(capL - 18, bx), lo);
-    const ty = by + ry * Math.sqrt(Math.max(0, 1 - Math.pow((tx - bx) / rx, 2))) - 8;
-    const x0 = Math.min(Math.max(tx, C.left - R.left + 40), C.right - R.left - 40), y0 = C.top - R.top + 2;
-    tail.style.clipPath = 'polygon(' + (x0 - 12).toFixed(0) + 'px ' + y0.toFixed(0) + 'px, ' + tx.toFixed(0) + 'px ' + ty.toFixed(0) + 'px, ' + (x0 + 12).toFixed(0) + 'px ' + y0.toFixed(0) + 'px)';
+    const i = inputs.findIndex((x) => x.checked), pick = inputs[i].closest('label').getBoundingClientRect(), box = res.getBoundingClientRect();
+    const want = pick.left + pick.width / 2 - box.left, x = Math.min(Math.max(want, 56), box.width - 56);
+    const tilt = Math.max(-22, Math.min(22, Math.atan2(want - x, Math.max(box.top - pick.bottom + 40, 40)) * 180 / Math.PI));
+    res.style.setProperty('--pick', x.toFixed(0) + 'px'); res.style.setProperty('--tilt', tilt.toFixed(1) + 'deg');
   };
-  addEventListener('resize', place); addEventListener('load', place); if (document.fonts) document.fonts.ready.then(place);
+  addEventListener('resize', place); addEventListener('load', place);
   inputs.forEach((r) => r.addEventListener('change', () => {
     place(); res.classList.add('sw');
     setTimeout(() => { const m = M[r.value]; $('mv3vt').textContent = m[0]; $('mv3h').textContent = m[1]; $('mv3p').textContent = m[2]; $('mv3a').src = '/assets/art/' + m[3]; res.classList.remove('sw'); }, 230);
