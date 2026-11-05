@@ -201,9 +201,9 @@ a.lchip[aria-current] { box-shadow: 0 0 0 2px var(--yellow), var(--shadow-1); }
 .mv3-res .vt { font-size: 0.92rem; font-weight: 800; color: var(--orange-deep); }
 .mv3-res h3 { font-size: clamp(1.7rem, 3vw, 2.4rem); line-height: 1.02; }
 .mv3-res p { color: rgb(var(--ink-rgb) / 0.82); }
-.mv3-res::before { content: ''; position: absolute; top: -0.7rem; left: var(--pick, 50%); width: 1.5rem; height: 1.5rem; background: var(--cream); rotate: 45deg; border-radius: 0.2rem; transition: left 0.5s var(--ease); }
+.mv3-res::before { content: ''; position: absolute; top: calc(-1.4rem + 1px); left: var(--pick, 50%); width: 2.2rem; height: 1.4rem; translate: -50% 0; rotate: var(--tilt, 0deg); transform-origin: 50% 100%; background: var(--cream); clip-path: polygon(50% 0, 100% 100%, 0 100%); transition: left 0.5s var(--ease), rotate 0.5s var(--ease); }
 .mv3-q { font-family: var(--font-display); font-weight: 900; font-size: clamp(1.3rem, 2.4vw, 1.8rem); text-align: center; }
-@media (max-width: 52rem) { .mv3-picks { grid-template-columns: 1fr 1fr; width: min(100%, 22rem); } .mv3-pick:nth-child(odd) { transform: none; } .mv3-pick:nth-child(even) { transform: translateY(0.8rem); } .mv3-res { grid-template-columns: 1fr; text-align: center; justify-items: center; padding: var(--s-5); } .mv3-res img { width: 6rem; } .mv3-res::before { left: 50%; } }
+@media (max-width: 52rem) { .mv3-picks { grid-template-columns: 1fr 1fr; width: min(100%, 22rem); } .mv3-pick:nth-child(odd) { transform: none; } .mv3-pick:nth-child(even) { transform: translateY(0.8rem); } .mv3-res { grid-template-columns: 1fr; text-align: center; justify-items: center; padding: var(--s-5); } .mv3-res img { width: 6rem; } .mv3-res::before { display: none; } }
 
 .cards2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-5); } @media (max-width: 52rem) { .cards2 { grid-template-columns: 1fr; } }
 </style>
@@ -278,7 +278,14 @@ import('/js/vendor/htm-preact.js').then(async ({ html, render }) => {
 (() => {
   const M = {car: ['Bilturmodus', 'På én telefon', 'Telefonen sendes rundt bordet. Perfekt for bilturen, ferga og venterommet.', 'bil.svg'], cabin: ['Hytteturmodus', 'På hver sin telefon', 'Alle blir med fra sin egen telefon, med en kode eller QR-kode. Perfekt for hytta og vorspielet.', 'hytte.svg']};
   const res = document.getElementById('mv3r'), inputs = [...document.querySelectorAll('input[name="mv3"]')], $ = (id) => document.getElementById(id);
-  const place = () => { const i = inputs.findIndex((x) => x.checked), n = inputs.length; res.style.setProperty('--pick', (100 / n * (i + 0.5)).toFixed(1) + '%'); };
+  // the tail of the card points at the chosen picture: under it when the card reaches that far, otherwise at the card's edge and leaning towards it (not on a phone: the tail is hidden there)
+  const place = () => {
+    const i = inputs.findIndex((x) => x.checked), pick = inputs[i].closest('label').getBoundingClientRect(), box = res.getBoundingClientRect();
+    const want = pick.left + pick.width / 2 - box.left, x = Math.min(Math.max(want, 56), box.width - 56);
+    const tilt = Math.max(-22, Math.min(22, Math.atan2(want - x, Math.max(box.top - pick.bottom + 40, 40)) * 180 / Math.PI));
+    res.style.setProperty('--pick', x.toFixed(0) + 'px'); res.style.setProperty('--tilt', tilt.toFixed(1) + 'deg');
+  };
+  addEventListener('resize', place); addEventListener('load', place);
   inputs.forEach((r) => r.addEventListener('change', () => {
     place(); res.classList.add('sw');
     setTimeout(() => { const m = M[r.value]; $('mv3vt').textContent = m[0]; $('mv3h').textContent = m[1]; $('mv3p').textContent = m[2]; $('mv3a').src = '/assets/art/' + m[3]; res.classList.remove('sw'); }, 230);
