@@ -145,7 +145,10 @@ body .hero .btn--slim { min-height: 3.8rem; padding: 0.45rem 2.7rem 0.55rem; fon
 /* ---- hero: a smaller button and the little arrow under it (2026-11-06) ---- */
 body .hero .btn--slim { min-height: 3.2rem; padding: 0.35rem 2.1rem 0.45rem; font-size: 1.55rem; }
 body .hero .cta { gap: 0; }
-body .hero .cue { margin-top: 1.1rem; }
+/* the arrow is fixed 20 px above the bottom edge of the screen while the hero is in view; the space it took in the flow is kept, so nothing moves */
+body .hero .cta { padding-bottom: 3.7rem; }
+body .hero .cue { animation: none; position: fixed; z-index: 50; left: 50%; translate: -50% 0; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); margin: 0; transition: opacity 0.35s; }
+body .hero .cue.off { opacity: 0; pointer-events: none; }
 @media (max-width: 40rem) {
   /* everything 30 px higher: 30 px less above, 30 px more below (the content is centred in the screen, so the two together move it 30 px) */
   body .hero { padding-top: calc(5.2rem - 30px); padding-bottom: calc(2.6rem + 30px); }
