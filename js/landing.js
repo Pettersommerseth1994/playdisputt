@@ -23,7 +23,10 @@ document.querySelectorAll('.rv, .ta:not(.go)').forEach((el) => io.observe(el));
 // The «Spill nå» that sticks to the top of the screen: shown when the one in the hero has scrolled out of view above.
 const heroBtn = document.querySelector('.hero .cta .btn'), stickyBtn = document.querySelector('.sticky-cta');
 const cue = document.querySelector('.hero .cue'); // the arrow is fixed at the bottom of the screen: gone once the hero button has scrolled away
-if (heroBtn && cue) new IntersectionObserver(([e]) => cue.classList.toggle('off', !e.isIntersecting)).observe(heroBtn);
+if (heroBtn && cue) { // the arrow fades out as soon as the page has scrolled ~40 px, and is off when a very low screen would put it on top of the button
+  const upd = () => { const c = cue.getBoundingClientRect(), b = heroBtn.getBoundingClientRect(); cue.classList.toggle('off', scrollY > 40 || (c.top < b.bottom && c.bottom > b.top)); };
+  addEventListener('scroll', upd, { passive: true }); addEventListener('resize', upd); upd();
+}
 if (heroBtn && stickyBtn) new IntersectionObserver(([e]) => stickyBtn.classList.toggle('show', !e.isIntersecting && e.boundingClientRect.top < 0)).observe(heroBtn);
 
 // The language: the flags at the top are links to /, /da/ and /sv/ and the click is remembered. A visitor whose browser is Danish or Swedish, and
